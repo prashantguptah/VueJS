@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+    <div id="mess">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMessage">Reverse message</button>
+    </div> -->
+
+
+    <div id="app1">
+        <p>{{message}}</p>
+        <input v-model="message">
+
+    </div>
+
+
+
+
+    <script>
+       
+
+        // const apps = new Vue({
+        //     el: "#mess",
+        //     data:{
+        //         message:"Hello Prashant Gupta"
+        //     },
+        //     methods:{
+        //         reverseMessage: function(){
+        //             this.message = this.message.split('').reverse().join('');
+        //         }
+        //     }
+        // })
+
+
+        const app1 = new Vue({
+            el:"#app1",
+            data:{
+                message:"Hello Prashant"
+            }
+        })
+    </script>
+    
+</body>
+</html>

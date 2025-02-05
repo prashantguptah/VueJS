@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" >
+        <template v-if="loginType">
+            <label>Username</label>
+            <input v-model="text" placeholder="Enter your username" key="username">
+          </template>
+          <template v-else>
+            <label>Email</label>
+            <input v-model="text" placeholder="Enter your email address" key="email">
+          </template>
+          <button v-on:click="checklogging" >click</button>
+    </div>
+
+  
+     <script>
+
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                loginType: true,
+                text:""
+
+            },
+            methods:{
+                checklogging : function(){
+                    if(this.loginType===true){
+                        this.loginType=false
+                    }else{
+                        this.loginType=true
+                    }
+                }
+            }
+        })
+
+     </script>
+</body>
+</html>

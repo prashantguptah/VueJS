@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+
+    <my-component  class="baz boo"></my-component>
+    <div id="data" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">45</div>
+    <div id="data" v-bind:style="styleObject">style Object</div>
+
+    <script>
+        Vue.component('my-component', {
+            template: '<p class="foo bar">Hi</p>'
+          })
+
+
+
+          const vm = new Vue({
+            el:"#data",
+            data:{
+                activeColor:"red",
+                fontSize:"30px",
+
+                styleObject:{
+                    color:"blue",
+                    fontSize:"13px"
+                }
+            }
+          })
+    </script>
+    
+</body>
+</html>
