@@ -57,13 +57,21 @@
     <option value="B">B</option>
     <option value="C">C</option>
   </select>
+
+
+
+
+  <!-- lists -->
+
+
+  <ol :style="{listStyle:'none'}">
+    <li v-for="(item,index) in items" :key="item.id">{{ item.message }} + {{ index+1 }}</li>
+  </ol>
+
+
+
    
 </template>
-
-
-
-
-
 
 
 <script>
@@ -80,7 +88,8 @@ export default{
             styleObject:{
                 color: "blue",
                 fontsize: 20
-            }
+            },
+            items: [{message:"Foo"}, {message:"Bar"}]
         }
     },
     
