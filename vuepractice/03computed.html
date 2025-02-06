@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+    <style>
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+       <button v-on:click="increment">Increment</button>
+       <p>Counter: {{counter}}</p>
+       <p>Clicks: {{clicks}}</p>
+    </div>
+
+    <script>
+
+        new Vue({
+            el:"#app",
+            data:{   
+                clicks: 0
+            },
+            methods:{
+                increment(){
+                    this.clicks++
+                }
+            },
+            computed:{
+                counter(){
+                    return this.clicks * 2
+                }
+            }
+        })
+
+       
+       
+    </script>
+
+  
+    
+</body>
+</html>

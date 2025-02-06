@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+
+</head>
+
+<body>
+
+
+
+
+    <div id="app">
+
+        <button v-on:click="greet">Click</button>
+        {{count}}
+
+
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+            Submit
+        </button>
+
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+
+
+        new Vue({
+            el: "#app",
+            data: {
+                name: "raghu"
+            },
+            methods: {
+                greet(event) {
+                    alert("Hello" + name)
+
+                    if (event) {
+                        alert(event.target.tagName)
+                    }
+                },
+                warn: function (message, event) {
+
+                    if (event) {
+                        event.preventDefault()
+                    }
+                    alert(message)
+                }
+            }
+        })
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

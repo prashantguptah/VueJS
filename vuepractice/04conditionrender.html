@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+    <style>
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- <button v-on:click="show = !show">Show / Hide</button>
+        <p v-if="show">I am part time visible</p>
+        <p >am I visible?</p>
+        <p v-show="show">I am showing</p> -->
+        <hr>
+        <ul>
+            <!-- <li v-for="(person,index) in persons">{{person.name}} - {{index}}</li> -->
+
+
+
+
+
+            <!-- <li v-for="(item,index) in items">
+                {{parentMessage}} - {{index}} - {{item.message}}
+            </li> -->
+
+
+
+            <li v-for="(value,name) in object" v-bind:key="value.id">
+                {{name}} : {{value}}
+            </li>
+        </ul>
+       
+    </div>
+
+    <script>
+
+        new Vue({
+            el:"#app",
+            // data:{
+            //     show:true,
+            //     persons:[
+            //         {name:"Max", age: 15},
+            //         {name:"Ram", age: 21},
+            //         {name:"Furry", age: 52}
+            //     ]
+            // }
+
+            // data:{
+            //     parentMessage: "Parent",
+            //     items:[
+            //         {message: "Foo"},
+            //         {message: "Fur"}
+            //     ]
+            // }
+
+
+            data:{
+                object:{
+                    title: "How to do lists in Vue",
+                    author: "Jane Doe",
+                    publishedAt:"2016-04-10"
+                }
+            }
+        })
+
+       
+
+       
+       
+    </script>
+
+  
+    
+</body>
+</html>

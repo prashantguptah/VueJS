@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+    <style>
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="n in evenNumbers" v-bind:key="n.id">{{n}}</li>
+        </ul>
+
+       
+    </div>
+
+<script>
+
+
+new Vue({
+    el:"#app",
+    data:{
+        numbers: [1,2,5,4,9,3]
+    },
+    computed:{
+        evenNumbers: function(){
+            return this.numbers.filter(function(number){
+                return number % 2===0
+            })
+        }
+    }
+
+    
+})
+
+
+</script>
+
+  
+    
+</body>
+</html>
