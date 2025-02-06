@@ -47,7 +47,16 @@ export default {
     },
     capitals: function(){
      this.input = this.input.toUpperCase()
-    }
+    },
+    
+    // computed: {
+    //     date: {
+    //         set: function(newvalue) {
+    //             console.log(newvalue);
+    //             this.date = new Date(newvalue).getTime();
+    //         }
+    //     }
+    // },
   }
 };
 </script>

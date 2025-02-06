@@ -1,19 +1,21 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
    <TestComponent/>
+   <PracticeComponent/>
 </template>
 
 <script>
 
 import TestComponent from "./components/TestComponent.vue";
-
+import PracticeComponent from "./components/PracticeComponent.vue";
 
 
 export default {
   name: 'App',
   components: {
    
-    TestComponent
+    TestComponent,
+    PracticeComponent
   }
 }
 </script>
