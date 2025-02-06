@@ -16,14 +16,19 @@
     </form>
 
     <ol v-bind:style="{ listStyle: 'none' }" class="details">
-       <li v-for="(item, index) in data" :key="index">
-         <div class="customerList">
-          <span>{{ item.fname }} </span>
-          <span>{{ item.lname }} </span>
-          <span>{{ item.address }}</span>
+       <li v-for="(item, index) in data" :key="index" >
+         <div class="customerList" :class="{'red': isRed}">
+          <p>{{ item.fname }} </p>
+          <p>{{ item.lname }} </p>
+          <p>{{ item.address }}</p>
+          <div>
+            <button v-on:click="deleteItem(index)">Delete</button> 
+            <input :checked="isRed" v-model="isRed" type="checkbox" @click="red"/>
+          </div>
+         
          </div>
-         <button>Delete</button>
-         <input type="checkbox"  >
+         
+         
        </li>
     </ol>
   </div>
@@ -37,7 +42,8 @@ export default {
       fname: "",
       lname: "",
       address: "",
-      data: []
+      data: [],
+      isRed: false
     };
   },
 
@@ -55,9 +61,19 @@ export default {
         this.lname = "";
         this.address = "";
       }
-    }
+    },
+    deleteItem(index) {
+      this.data.splice(index, 1);
+    },
+    red() {
+  this.isRed = !this.isRed;
+}
+
   }
 };
+
+
+
 </script>
 
 <style scoped>
@@ -67,21 +83,43 @@ export default {
   margin: 0;
   padding: 0;
 }
-button {
-  margin-top: 10px;
-  cursor: pointer;
-}
+
 .details{
-  margin-top: 15px;
+  margin-top: 20px;
 }
  .customerList{
  display: grid;
- grid-template-columns: repeat(3,1fr);
+ grid-template-columns: repeat(4,1fr);
  align-items: center;
+ background: yellow;
  }
- .customerList span{
+ p{
   border: 1px solid black;
   padding: 5px 10px;
  }
+ .customerList div{
+  border: 1px solid black;
+ 
+
+ }
+ h1{
+  margin-bottom: 20px;
+ }
+ .red {
+  background: red;
+  color: white;
+}
+input{
+  padding: 5px;
+  margin-right: 20px;
+  margin-left: 5px;
+}
+button{
+  height: 25px;
+  padding: 6px 10px;
+}
+
+
+
 
 </style>
