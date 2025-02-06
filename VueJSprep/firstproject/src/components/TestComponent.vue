@@ -1,13 +1,27 @@
 <template>
 
   <div>
-    <h1>Hello {{ input }}</h1>
+
+
+
+    <div :class="{red:isRed}">
+      <h1>Hello {{ input }}</h1>
+    </div>
+   
     <input type="text" v-model="input">
     {{ date }}
 
     <br>
     <button v-on:click="clear">Clear</button>
     <button v-on:click="capitals">Capital</button>
+
+    <hr>
+    
+
+    <input :checked="isRed" v-model="isRed" type="checkbox" @click="red"/> Red
+
+
+   
   </div>
 </template>
 
@@ -20,25 +34,17 @@ export default {
   data() {
     return {
       input:"Prashant",
-      date : false
+      date : false,
+      isRed: false
     };
   },
 
   created: function(){
-    console.log("Created "+ this.input)
-    this.date = new Date()
+    this.date = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay()
   },
   mounted: function(){
-    console.log("mounted"+ this.date)
-    this.date = new Date()
-  },
-  updated: function(){
-    console.log("updated" +this.date)
-    // this.date = new Date()   error =  Maximum recursive updates
-  },
-  unmounted: function(){
-    console.log("destroyed" + this.date)
-    this.date = new Date()
+    
+    this.date = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay()
   },
 
   methods:{
@@ -48,15 +54,11 @@ export default {
     capitals: function(){
      this.input = this.input.toUpperCase()
     },
+    red: function(){
+      console.log(this.isRed)
+    }
     
-    // computed: {
-    //     date: {
-    //         set: function(newvalue) {
-    //             console.log(newvalue);
-    //             this.date = new Date(newvalue).getTime();
-    //         }
-    //     }
-    // },
+    
   }
 };
 </script>
@@ -64,5 +66,13 @@ export default {
 
 
 <style>
+
+.red{
+  color: red;
+}
+
+.green{
+  color: green;
+}
 
 </style>
