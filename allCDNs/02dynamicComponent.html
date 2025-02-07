@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+<body>
+
+    <style>
+        .tab-button {
+          padding: 6px 10px;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+          border: 1px solid #ccc;
+          cursor: pointer;
+          background: #f0f0f0;
+          margin-bottom: -1px;
+          margin-right: -1px;
+        }
+        .tab-button:hover {
+          background: #e0e0e0;
+        }
+        .tab-button.active {
+          background: #e0e0e0;
+        }
+        .tab {
+          border: 1px solid #ccc;
+          padding: 10px;
+        }
+      </style>
+
+    <div id="app" class="demo">
+
+        <button v-for="tab in tabs"
+        v-bind:key="tab"
+        v-bind:class="['tab-button', {active: currentTab === tab}]"
+        v-on:click="currentTab = tab"
+        >
+          {{tab}}
+        </button>
+        <component v-bind:is="currentTabComponent" class="tab"></component>
+            
+         <hr>
+
+ 
+     
+
+        <!-- assignment -->
+
+        <base-button
+            v-bind:color="buttonColors.primary"
+            v-on:change-color="changeColor('primary')"
+            name="Primary" 
+            v-on:click.native="openAlert"     
+        ></base-button>
+
+        <!-- using .native  to listen to native DOM events rather than Vue's custom event system-->
+
+        <base-button
+            v-bind:color="buttonColors.secondary"
+            v-on:change-color="changeColor('secondary')"
+            :name="secondaryButtonName"
+        ></base-button>
+       
+
+
+    </div>
+
+
+    <script>
+
+        Vue.component("tab-home",{
+            template: "<div>Home component</div>"
+        });
+
+        Vue.component("tab-posts",{
+            template: "<div>Posts component</div>"
+        });
+
+        Vue.component("tab-archieve",{
+            template: "<div>Archieve component</div>"
+        });
+
+
+
+         // assignment
+
+         Vue.component("base-button",{
+            props: ["color","name"],
+            template: `
+            <button v-on:click="$emit('change-color')"
+             :style="{ backgroundColor: color, color: '#fff', padding: '10px', borderRadius: '5px' }"
+            >
+                {{name}}
+            </button>
+            `
+        });
+
+       
+        new Vue({
+            el:"#app",
+            data(){
+
+                return {
+
+                    buttonColors:{
+                        primary: "#0069D9", 
+                        secondary: "#28A745" 
+                    },
+                    secondaryButtonName: "Secondary",
+                    currentTab: "Home",
+                    tabs: ["Home", "Posts", "Archieve"]
+                }
+               
+            },
+            computed: {
+                currentTabComponent: function(){
+                    return "tab-" + this.currentTab.toLowerCase()
+                }
+            },
+            methods: {
+                changeColor: function(buttonType) {
+                    if (buttonType === "primary") {
+                        this.buttonColors.primary = this.buttonColors.primary === "#0069D9" ? "#5A6268" : "#0069D9";
+                    } else if (buttonType === "secondary") {
+                        this.buttonColors.secondary = this.buttonColors.secondary === "#28A745" ? "#FFC107" : "#28A745";
+                        this.reverseName();
+                    }
+                },
+                openAlert: function(){
+                    alert("Primary Button is clicked!")
+                },
+                reverseName:  function(){
+                    this.secondaryButtonName = this.secondaryButtonName === "Secondary" ? "yradnoceS" : "Secondary";
+                }
+            }
+        })
+
+
+
+       
+
+    </script>
+    
+</body>
+</html>
