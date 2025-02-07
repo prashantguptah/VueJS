@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Base Button</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <style>
+        /* Default styling for the button */
+        .base-button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       
+       
+
+        
+        <base-button style="background-color: #0069D9; color: #fff;" v-on:change-color="colored"></base-button>
+
+        <blog-post v-for="post in posts" :key="post.id" :post="post" v-on:enlarge-text="postFontSize += 0.1"
+        :font-size="postFontSize">
+    </blog-post>
+
+        
+    </div>
+
+    <script>
+
+
+Vue.component('blog-post', {
+            props: ['post', 'fontSize'],
+            template: `
+                <div class="blog-post" :style="{ fontSize: fontSize + 'em' }">
+                    <h3>{{ post.title }}</h3>
+                    <button v-on:click="$emit('enlarge-text', 0.2)">Enlarge text</button>
+                    <div v-html="post.content"></div>
+                </div>
+            `
+        });
+        
+        Vue.component("base-button", {
+            props:['color', 'background-color'],
+            template: `
+                <button class="base-button" :style="{color: color)" v-on:click="$emit('change-color', #488aaa)>
+                    Primary
+                </button>
+            `,
+            computed: {
+                computedStyles() {
+                    return {
+                        backgroundColor: this.$parent.$attrs.style?.includes('background-color') ? '' : '#00069D',
+                        color: this.$parent.$attrs.style?.includes('color') ? '' : '#fff'
+                    };
+                }
+            }
+        });
+
+        new Vue({
+            el: "#app"
+        });
+    </script>
+
+</body>
+
+</html>

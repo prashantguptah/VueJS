@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Components</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <app-user></app-user>
+        <app-user></app-user>
+        <button-click></button-click>
+
+        <blog-post v-for="post in posts" :key="post.id" :post="post" v-on:enlarge-text="postFontSize += 0.1"
+            :font-size="postFontSize">
+        </blog-post>
+
+        <!-- v-model input inside #app -->
+        <custom-input v-model="searchText"></custom-input>
+        <p>Search Text: {{ searchText }}</p>
+
+        <alert-box>
+            Something bad happened.
+        </alert-box>
+    </div>
+
+    <script>
+        // Static user list
+        Vue.component("app-user", {
+            data: function () {
+                return {
+                    users: [
+                        { id: 1, username: "Crish" },
+                        { id: 2, username: "Krishna" },
+                        { id: 3, username: "Raghu" },
+                        { id: 4, username: "Kapil" },
+                    ]
+                }
+            },
+            template: `
+                <div>
+                    <div class="user" v-for="user in users" :key="user.id">
+                        <p>{{ user.username }}</p>
+                    </div>
+                </div>
+            `
+        });
+
+        // Enlarging text in blog post
+        Vue.component('blog-post', {
+            props: ['post', 'fontSize'],
+            template: `
+                <div class="blog-post" :style="{ fontSize: fontSize + 'em' }">
+                    <h3>{{ post.title }}</h3>
+                    <button v-on:click="$emit('enlarge-text', 0.2)">Enlarge text</button>
+                    <div v-html="post.content"></div>
+                </div>
+            `
+        });
+
+        // Button Click Counter
+        Vue.component("button-click", {
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count++">{{ count }}</button>'
+        });
+
+        // Custom Input with v-model
+        Vue.component('custom-input', {
+            props: ['value'],
+            template: `
+                <input
+                    v-bind:value="value"
+                    v-on:input="$emit('input', $event.target.value)"
+                >
+            `
+        });
+
+        Vue.component('alert-box', {
+            template: `
+                <div class="demo-alert-box">
+                <strong>Error!</strong>
+                <slot></slot>
+                </div>
+            `
+        })
+
+        // Vue Instance
+        new Vue({
+            el: "#app",
+            data: {
+                postFontSize: 1,
+                searchText: '', // Fixed: Initialize searchText
+                posts: [
+                    { id: 1, title: 'My journey with Vue', content: 'Learning Vue step by step.' },
+                    { id: 2, title: 'Blogging with Vue', content: 'Using Vue for building blog components.' },
+                    { id: 3, title: 'Why Vue is so fun', content: 'Vue makes frontend development easier!' }
+                ]
+            }
+        });
+    </script>
+
+</body>
+
+</html>
