@@ -60,6 +60,7 @@ export default {
         this.fname = "";
         this.lname = "";
         this.address = "";
+        console.log(data)
       }
     },
     deleteItem(index) {
